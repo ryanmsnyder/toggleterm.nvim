@@ -34,6 +34,7 @@ local function shade(color, factor) return colors.shade_color(color, factor) end
 --- @field highlights ToggleTermHighlights
 --- @field winbar WinbarOpts
 --- @field autochdir boolean
+--- @field ignored_filetypes string[] -- don't open terminal if cursor is on these file types
 
 ---@type ToggleTermConfig
 local config = {
@@ -59,6 +60,7 @@ local config = {
   float_opts = {
     winblend = 0,
   },
+  ignored_filetypes = {},
 }
 
 ---Derive the highlights for a toggleterm and merge these with the user's preferences
