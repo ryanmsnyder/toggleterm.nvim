@@ -300,6 +300,7 @@ end
 --- @param size number
 --- @param term Terminal
 function M.open_split(size, term)
+  if vim.bo.ft == "neo-tree" then return end
   local has_open, windows = M.find_open_windows()
   local commands = split_commands[term.direction]
 
@@ -311,7 +312,11 @@ function M.open_split(size, term)
     api.nvim_set_current_win(split_win.window)
     vim.cmd(commands.existing)
   else
-    vim.cmd(commands.new)
+    if term.direction == "horizontal" then
+      vim.cmd("split")
+    else
+      vim.cmd(commands.new)
+    end
   end
 
   M.resize_split(term, size)
