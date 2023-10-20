@@ -17,6 +17,7 @@ local function shade(color, factor) return colors.shade_color(color, factor) end
 --- @class ToggleTermConfig
 --- @field size number
 --- @field shade_filetypes string[]
+--- @field ignore_filetypes string[]
 --- @field hide_numbers boolean
 --- @field open_mapping string
 --- @field shade_terminals boolean
@@ -39,6 +40,7 @@ local function shade(color, factor) return colors.shade_color(color, factor) end
 local config = {
   size = 12,
   shade_filetypes = {},
+  ignore_filetypes = {},
   hide_numbers = true,
   shade_terminals = true,
   insert_mappings = true,

@@ -469,6 +469,17 @@ end
 ---@param size number?
 ---@param direction string?
 function Terminal:open(size, direction)
+  local ft = vim.bo.filetype
+  local ignore_filetypes_list = config.ignore_filetypes
+  local filetype_ignored = vim.tbl_contains(ignore_filetypes_list, ft)
+  if filetype_ignored then
+    utils.notify(
+      ft .. " was set as a filetype to ignore in your toggleterm config (ignore_filetypes)",
+      "warn"
+    )
+    return
+  end
+
   self.dir = _get_dir(self.dir)
   ui.set_origin_window()
   if direction then self:change_direction(direction) end

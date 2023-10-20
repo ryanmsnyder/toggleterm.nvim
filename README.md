@@ -170,6 +170,7 @@ require("toggleterm").setup{
   on_exit = fun(t: Terminal, job: number, exit_code: number, name: string) -- function to run when terminal process exits
   hide_numbers = true, -- hide the number column in toggleterm buffers
   shade_filetypes = {},
+  ignore_filetypes = {},
   autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
   highlights = {
     -- highlights which map to a highlight group name and a table of it's values
@@ -340,6 +341,16 @@ require'toggleterm'.setup {
 ```
 
 setting `"none"` will allow normal terminal buffers to be highlighted.
+
+### Prevent terminal from opening on file types
+
+This option prevents toggleterm from opening a terminal on specified file types. For example, accidentally calling toggleterm while the cursor is in a `telescope.nvim` window may cause unintended effects.
+
+```lua
+require'toggleterm'.setup {
+  ignore_filetypes = { "neo-tree", "TelescopePrompt" } 
+}
+```
 
 ### Set persistent size
 
